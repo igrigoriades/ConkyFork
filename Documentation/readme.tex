@@ -1,0 +1,39 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\author{GG}
+\title{README}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{SysMonV1.0}	%Using * we get rid of the numbering before the text
+SysMon is a script written in bash. It's purpose is to fork conky into the terminal for headless usage. 
+SysMon consists of four files including:
+\begin{itemize}
+	\item{\textbf{conkyrc:}} Conkyrc is the configuration file of the conky itself. Be sure to use out\_to\_x=false and
+	out\_to\_console=true in conky.config section. You can create your own rc file or modify the existing.
+
+	\item{\textbf{sysmon-deamon:}} Sysmon-deamon is a script written in bash that using the watch command   
+	refreshes the output of the sysmon-instance, therefore the sysmon-instance runs repeatedly in background. 
+	
+	\item{\textbf{sysmon-instance:}} Sysmon-instance is a script written in bash that runs the conky, while writing 
+	its output to a file. Afterwords it goes through the file writing to the terminal its contents using
+	LS\_COLORS  color scheme 
+
+	\item{\textbf{tmp:} } Tmp is the file that the conky writes its output. It is overwritten each time.
+\end{itemize}
+
+\section*{Usage} Make the sysmon-deamon and sysmon-instance executable using "chmod +x" command
+and run sysmon-deamon.
+
+\section*{License} Conky is licensed under the terms of the GPLv3 license therefore sysmon is also licensed under the
+terms of GPLv3. A copy of the license is located under the "Documentation" directory or can be found on the 
+following{\textcolor{blue}{URL}}.
+
+\end{document}

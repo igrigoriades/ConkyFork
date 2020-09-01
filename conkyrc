@@ -1,0 +1,32 @@
+conky.config = {
+	out_to_x=false,
+	out_to_console=true,
+	cpu_avg_samples = 2
+}
+conky.text = [[
+Kernel: $kernel
+Distro: ${exec lsb_release -d | cut -c 14-}
+Entropy: $entropy_avail Bits
+CPU: ${cpu cpu0}%	
+RAM: $memperc%
+#SWP: ${swapperc}%
+Frequency: $freq_g GHz
+#CPU Fan Speed: ${exec nbfc status | grep "Current fan speed" | cut -d ":" -f 2 | head -n 1} RPM
+GPU Util: ${exec nvidia-smi -q -d  UTILIZATION | grep 'Gpu' | cut -d ":" -f 2}
+GPU Mem: ${exec nvidia-smi -q -d  UTILIZATION | grep 'Memory' | head -n 1 | cut -d ":" -f 2}
+#GPU Fan Speed: ${exec nbfc status | grep "Current fan speed" | cut -d ":" -f 2 | tail -n 1} RPM
+GPU Temp: ${exec nvidia-smi -q -d TEMPERATURE | grep 'GPU Current Temp' | cut -d ":" -f 2}
+CPU Temp: ${exec sensors | grep "Package id 0" | cut -d "+" -f2 | cut -c1-7}	
+Active Interface: $gw_iface
+IP Address: ${exec wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1}
+TOR Service: ${if_running tor} Active${else}Disabled${endif}
+SSD: ${fs_used_perc /home}%
+HDD: ${fs_used_perc /run/media/admin/DATA/}%
+${top_mem pid 1}: ${top_mem name 1}${top_mem mem 1}
+${top_mem pid 2}: ${top_mem name 2}${top_mem mem 2}
+${top_mem pid 3}: ${top_mem name 3}${top_mem mem 3}
+${top_mem pid 4}: ${top_mem name 4}${top_mem mem 4}
+${top_mem pid 5}: ${top_mem name 5}${top_mem mem 5}
+]]
+
+
